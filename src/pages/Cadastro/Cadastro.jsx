@@ -1,9 +1,9 @@
 import { CardAcesso } from "../../components/CardAcesso/CardAcesso";
 
-export function AcessoPage() {
+export function CadastroPage() {
   return(
     <>
-      <CardAcesso accesOption='login'/>
+      <CardAcesso accesOption='register'/>
     </>
   );
 };

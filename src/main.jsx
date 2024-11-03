@@ -4,19 +4,16 @@ import {
   createBrowserRouter,
   RouterProvider, 
 } from 'react-router-dom';
-import { HomePage } from './pages/Home/Home';
+import { IndexPage } from './pages/Home/Home';
 import { AcessoPage } from './pages/Acesso/Acesso';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { CadastroPage } from './pages/Cadastro/Cadastro';
+
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <HomePage />
-  },
-
-  {
-    path: '/acesso',
-    element: <AcessoPage />
-  },
+  { path: '/', element: <IndexPage /> },
+  { path: '/acesso', element: <AcessoPage /> },
+  { path: '/cadastro', element: <CadastroPage /> },
 ]);
 
 createRoot(document.getElementById('root')).render(
