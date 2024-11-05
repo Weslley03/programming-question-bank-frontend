@@ -4,8 +4,12 @@ import { AcessoSchema } from "../../schema/acessoSchema";
 import { CadastroSchema } from "../../schema/cadastroSchema";
 import { useNavigate } from "react-router-dom";
 import { acessoUser } from "../../services/AcessoService/acessoService";
+import { useState } from "react";
 
 export function CardAcesso( { accesOption }) {
+
+  const [ accesError, setAccesError ] = useState(null);
+
   let schema;
   if(accesOption === 'register') {
     schema = CadastroSchema;
@@ -22,15 +26,18 @@ export function CardAcesso( { accesOption }) {
   const nami = useNavigate();
 
   async function loginHandle(data){
-    try{
-      await acessoUser(data, accesOption);
-      console.log(data)
-      if(accesOption === 'register') nami('/acesso');
-      if(accesOption === 'login') nami('/');
-    } catch(err) {
-      console.error(err);
+    const response = await acessoUser(data, accesOption);
+    if(response && response.status === 200 && response.status === 201) {
+      if(accesOption === 'register') {
+        nami('/acesso')
+      } else if (accesOption === 'login') {
+        localStorage.setItem('User_Token', response.data.User_Token);
+        nami('/');
+      };
+    } else { 
+        setAccesError(response?.data?.error);
     };
-  }
+  };
 
   return(
     <section className="container text-center">
@@ -53,6 +60,8 @@ export function CardAcesso( { accesOption }) {
 
             <input type="password" placeholder="password"  {...acessoRegister('User_Password')} />
             {acessoErrors.User_Password && <span> { acessoErrors.User_Password.message } </span>}
+
+            {accesError && <span> { accesError } </span>}
 
           {  
             accesOption == 'register' &&

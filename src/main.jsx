@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider, 
 } from 'react-router-dom';
-import { IndexPage } from './pages/Home/Home';
+import { IndexPage } from './pages/Index/Index';
 import { AcessoPage } from './pages/Acesso/Acesso';
 import { CadastroPage } from './pages/Cadastro/Cadastro';
 import 'bootstrap/dist/css/bootstrap.min.css';
