@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AcessoSchema } from "../../schema/acessoSchema";
-import { CadastroSchema } from "../../schema/cadastroSchema";
+import { AcessoSchema } from "../../schema/Acesso/acessoSchema";
+import { CadastroSchema } from "../../schema/Acesso/cadastroSchema";
 import { useNavigate } from "react-router-dom";
 import { acessoUser } from "../../services/AcessoService/acessoService";
 import { useState } from "react";
@@ -85,7 +85,7 @@ export function CardAcesso( { accesOption }) {
           }
           
           {
-            accesOption !== 'register' && <p className="pointer">esqueci minha senha</p>
+            accesOption !== 'register' && <p className="pointer" onClick={() => nami('/reset-password')}>esqueci minha senha</p>
           }
 
         </div>

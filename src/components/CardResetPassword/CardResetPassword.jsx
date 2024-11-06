@@ -1,7 +1,19 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { resetPasswordSchema } from "../../schema/ResetPassword/resetPasswordSchema";
 
 export function CardResetPassword() {
   const [ emailValid, setEmailValid ] = useState(false);
+  const {
+    register: resetPassRegister,
+    handleSubmit: resetPassSubmit,
+    formState: { errors: resetPassErrors },
+  } = useForm({ resolver: zodResolver(resetPasswordSchema) })
+
+  async function submitHandle() {
+    setEmailValid(true)
+  };
 
   return(
     <>
@@ -9,13 +21,14 @@ export function CardResetPassword() {
       <h1 className="pointer" onClick={() => nami('/')}>Weslley-Dev</h1>
 
       {
-        emailValid 
+        !emailValid 
         ?
-          <form>
+          <form onSubmit={resetPassSubmit(submitHandle)}>
             <div className="row">
               <label>qual seu e-mail de acesso?</label>
-              <input name="User_Email" type="email" placeholder="email"></input>
-              <button>enviar</button>
+              <input type="email" placeholder="email" {...resetPassRegister('User_Email')} />
+              { resetPassErrors.User_Email && <span> { resetPassErrors.User_Email.message } </span> }
+              <button type="submit">enviar</button>
             </div>
           </form> 
         :
