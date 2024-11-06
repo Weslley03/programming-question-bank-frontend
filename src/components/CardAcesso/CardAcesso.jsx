@@ -5,6 +5,7 @@ import { CadastroSchema } from "../../schema/cadastroSchema";
 import { useNavigate } from "react-router-dom";
 import { acessoUser } from "../../services/AcessoService/acessoService";
 import { useState } from "react";
+import './CardAcessoStyled.css';
 
 export function CardAcesso( { accesOption }) {
 
@@ -41,7 +42,7 @@ export function CardAcesso( { accesOption }) {
 
   return(
     <section className="container text-center">
-      <h1>Weslley-Dev</h1>
+      <h1 className="pointer" onClick={() => nami('/')}>Weslley-Dev</h1>
 
       <form onSubmit={acessoHandleSubmit(loginHandle)}>
         <div className="row">
@@ -76,15 +77,15 @@ export function CardAcesso( { accesOption }) {
           
           {
             accesOption == 'register'
-            ? <button type="submit">cadastrar</button>
+            ? <button className="buttonAcess" type="submit">cadastrar</button>
             : <>
-              <button type="submit">entrar</button> 
-              <button onClick={() => nami('/cadastro')} type="button">cadastro</button>
+              <button className="buttonAcess" type="submit">entrar</button> 
+              <button className="buttonAcess" onClick={() => nami('/cadastro')} type="button">cadastro</button>
               </> 
           }
           
           {
-            accesOption !== 'register' && <p style={{cursor: "pointer"}}>esqueci minha senha</p>
+            accesOption !== 'register' && <p className="pointer">esqueci minha senha</p>
           }
 
         </div>

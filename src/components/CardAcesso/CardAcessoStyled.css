@@ -1,0 +1,8 @@
+.pointer {
+  cursor: pointer
+}
+
+.buttonAcess:hover {
+  background-color: #383838;
+  transition: all 0.6s;
+}
