@@ -1,11 +1,16 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AcessoSchema } from "../../schema/acessoSchema";
-import { CadastroSchema } from "../../schema/cadastroSchema";
+import { AcessoSchema } from "../../schema/Acesso/acessoSchema";
+import { CadastroSchema } from "../../schema/Acesso/cadastroSchema";
 import { useNavigate } from "react-router-dom";
 import { acessoUser } from "../../services/AcessoService/acessoService";
+import { useState } from "react";
+import './CardAcessoStyled.css';
 
 export function CardAcesso( { accesOption }) {
+
+  const [ accesError, setAccesError ] = useState(null);
+
   let schema;
   if(accesOption === 'register') {
     schema = CadastroSchema;
@@ -22,19 +27,22 @@ export function CardAcesso( { accesOption }) {
   const nami = useNavigate();
 
   async function loginHandle(data){
-    try{
-      await acessoUser(data, accesOption);
-      console.log(data)
-      if(accesOption === 'register') nami('/acesso');
-      if(accesOption === 'login') nami('/');
-    } catch(err) {
-      console.error(err);
+    const response = await acessoUser(data, accesOption);
+    if(response.status === 200 || response.status === 201) {
+      if(accesOption === 'register') {
+        nami('/acesso')
+      } else if (accesOption === 'login') {
+        localStorage.setItem('User_Token', response.data.User_Token);
+        nami('/');
+      };
+    } else { 
+        setAccesError(response?.data?.error);
     };
-  }
+  };
 
   return(
     <section className="container text-center">
-      <h1>Weslley-Dev</h1>
+      <h1 className="pointer" onClick={() => nami('/')}>Weslley-Dev</h1>
 
       <form onSubmit={acessoHandleSubmit(loginHandle)}>
         <div className="row">
@@ -54,6 +62,8 @@ export function CardAcesso( { accesOption }) {
             <input type="password" placeholder="password"  {...acessoRegister('User_Password')} />
             {acessoErrors.User_Password && <span> { acessoErrors.User_Password.message } </span>}
 
+            {accesError && <span> { accesError } </span>}
+
           {  
             accesOption == 'register' &&
               <>
@@ -67,15 +77,15 @@ export function CardAcesso( { accesOption }) {
           
           {
             accesOption == 'register'
-            ? <button type="submit">cadastrar</button>
+            ? <button className="buttonAcess" type="submit">cadastrar</button>
             : <>
-              <button type="submit">entrar</button> 
-              <button onClick={() => nami('/cadastro')} type="button">cadastro</button>
+              <button className="buttonAcess" type="submit">entrar</button> 
+              <button className="buttonAcess" onClick={() => nami('/cadastro')} type="button">cadastro</button>
               </> 
           }
           
           {
-            accesOption !== 'register' && <p style={{cursor: "pointer"}}>esqueci minha senha</p>
+            accesOption !== 'register' && <p className="pointer" onClick={() => nami('/reset-password')}>esqueci minha senha</p>
           }
 
         </div>
