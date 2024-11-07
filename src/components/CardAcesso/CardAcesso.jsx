@@ -28,7 +28,7 @@ export function CardAcesso( { accesOption }) {
 
   async function loginHandle(data){
     const response = await acessoUser(data, accesOption);
-    if(response && response.status === 200 && response.status === 201) {
+    if(response.status === 200 || response.status === 201) {
       if(accesOption === 'register') {
         nami('/acesso')
       } else if (accesOption === 'login') {
