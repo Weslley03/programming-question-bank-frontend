@@ -1,0 +1,20 @@
+#casca {
+  border: solid 1px;
+  border-radius: 10px;
+  margin: 10px;
+  width: 90%;
+}
+
+#interior {
+  margin: 6px;
+}
+
+.prevButton {
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.prevButton:hover {
+  background-color: aquamarine;
+  transition: 0.4s ease-in-out;
+}
