@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../components/Navbar/Navbar";
+import { CardQuestion } from "../../components/CardQuestionIndex/CardQuestion";
 
 export function IndexPage() {
 
@@ -10,9 +11,11 @@ export function IndexPage() {
   return(
     <>
       <Navbar />
-      <h1>Questões Disponíveis: { questionNumber } ! </h1>
+      <h1 style={{margin: '10px'}}> Questões Disponíveis: { questionNumber } ! </h1>
 
       { token &&  <p> user: { token } </p>  }
+
+      <CardQuestion />
     </>
   );
 };
