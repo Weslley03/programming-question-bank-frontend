@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { CardQuestion } from "../../components/CardQuestionIndex/CardQuestion";
+import { OptionsButton } from "../../components/OptionsButton/OptionsButton";
 
 export function IndexPage() {
 
@@ -16,6 +17,7 @@ export function IndexPage() {
       { token &&  <p> user: { token } </p>  }
 
       <CardQuestion />
+      <OptionsButton />
     </>
   );
 };

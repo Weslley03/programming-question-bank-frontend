@@ -1,0 +1,9 @@
+.buttons {
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.buttons:hover {
+  background-color: aquamarine;
+  transition: 0.4s ease-in-out;
+}
