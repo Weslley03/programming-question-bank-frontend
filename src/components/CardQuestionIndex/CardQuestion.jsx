@@ -2,7 +2,7 @@ import './CardQuestion.css';
 
 export function CardQuestion() {
   return (
-    <>
+    <div>
       <div id='casca'>
         <div id='interior' className='d-flex justify-content-between align-items-center'>
           <span> Author </span>
@@ -17,6 +17,6 @@ export function CardQuestion() {
       <button className='prevButton'> before </button>
       <span> { `>` } </span>
       <button className='prevButton'> next </button>
-    </>
+    </div>
   );
 };
