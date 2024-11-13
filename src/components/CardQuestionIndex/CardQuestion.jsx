@@ -1,6 +1,17 @@
 import './CardQuestion.css';
 
 export function CardQuestion({ items }) {
+
+  function aprovedAnalize(item) {
+    let aproved; 
+    if(item.Question_Is_Approved === true) {
+      aproved = 'APROVADA';
+    } else {
+      aproved = 'NÃO APROVADA';
+    }
+    return aproved;
+  };
+
   return (
     <>
       {
@@ -8,12 +19,12 @@ export function CardQuestion({ items }) {
         <div key={index}>
           <div id='casca'>
             <div id='interior' className='d-flex justify-content-between align-items-center'>
-              <span> Author:  { item.author } </span>
-              <span> Assunto: { item.assunto } </span>
-              <span> { item.text } </span>
+              <span> Author:  { item.Question_Name_User_Internal } </span>
+              <span> Assunto: { item.Question_Statement } </span>
+              <span> { item.Question_Text_Body } </span>
               <div className='d-flex flex-column text-end'>
-                <span> { item.aproved } </span>
-                <span> utilizada { item.used }x </span>
+                <span> { aprovedAnalize(item) } </span> 
+                <span> utilizada { item.Question_Total_Use }x </span>
               </div>
             </div>
           </div>
