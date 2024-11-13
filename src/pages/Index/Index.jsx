@@ -1,16 +1,21 @@
 import { Navbar } from "../../components/Navbar/Navbar";
 import { CardQuestion } from "../../components/CardQuestionIndex/CardQuestion";
 import { OptionsButton } from "../../components/OptionsButton/OptionsButton";
+import { useState } from "react";
 
 export function IndexPage() {
   
-  let value;
-  function handleResult (results) {
-    value = results;
-    console.log(value);
+  const [ questions, setQuestions ] = useState(
+    [
+      { author: 'weslley-dev', assunto: 'javascript', text: 'dá pra usar javascript no backend?', aproved: 'APROVADO', used: 20 },
+    ]
+  );
+
+  function handleResult(results) {
+    setQuestions(results)
   };
 
-  const questionNumber = 0;
+  const questionNumber = questions.length;
   const token = localStorage.getItem('User_Token');
 
   return(
@@ -20,7 +25,7 @@ export function IndexPage() {
 
       { token &&  <p> user: { token } </p>  }
 
-      <CardQuestion items={value} />
+      <CardQuestion items={questions} />
       <OptionsButton />
     </>
   );
