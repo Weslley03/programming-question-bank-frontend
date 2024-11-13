@@ -1,15 +1,20 @@
 import { Navbar } from "../../components/Navbar/Navbar";
 import { CardQuestion } from "../../components/CardQuestionIndex/CardQuestion";
 import { OptionsButton } from "../../components/OptionsButton/OptionsButton";
-import { useState } from "react";
+import { findAllQuestions } from "../../services/QuestionService/FindQuestionService";
+import { useEffect, useState } from "react";
 
 export function IndexPage() {
   
-  const [ questions, setQuestions ] = useState(
-    [
-      { author: 'weslley-dev', assunto: 'javascript', text: 'dá pra usar javascript no backend?', aproved: 'APROVADO', used: 20 },
-    ]
-  );
+  const [ questions, setQuestions ] = useState([]);
+
+  useEffect(() => {
+    const execute = async () => {
+      const response = await findAllQuestions();
+      setQuestions(response);
+    };
+    execute();
+  }, []);
 
   function handleResult(results) {
     setQuestions(results)
