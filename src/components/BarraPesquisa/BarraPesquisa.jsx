@@ -7,7 +7,10 @@ export function BarraPesquisa({ onSearch }) {
 
   async function searchByAssunto() {
     const result = [
-      { author: `weslleydev`, assunto: `${inputAssunto}`, text: 'dá pra usar javascript no backend?', aproved: 'APROVADO', used: 20 },
+      { Question_Name_User_Internal: `weslleydev`, 
+        Question_Statement: `${inputAssunto}`, 
+        Question_Text_Body: 'dá pra usar javascript no backend?', 
+        Question_Is_Approved: true, Question_Total_Use: 20 },
     ]
     onSearch(result);
   };
