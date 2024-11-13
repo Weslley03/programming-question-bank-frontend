@@ -12,6 +12,7 @@
 .prevButton {
   margin: 10px;
   border-radius: 10px;
+  font-size: 10px;
 }
 
 .prevButton:hover {
