@@ -3,10 +3,12 @@ import './BarraPesquisa.css';
 
 export function BarraPesquisa({ onSearch }) {
 
-  const [ inputAssunto, setInputAssunto ] = useState('');
+  const [ inputAssunto, setInputAssunto ] = useState([]);
 
   async function searchByAssunto() {
-    const result = inputAssunto;
+    const result = [
+      { author: `weslleydev`, assunto: `${inputAssunto}`, text: 'dá pra usar javascript no backend?', aproved: 'APROVADO', used: 20 },
+    ]
     onSearch(result);
   };
 
